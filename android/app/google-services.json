@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "168528238029",
+    "project_id": "test-4833d",
+    "storage_bucket": "test-4833d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168528238029:android:d5dd4167a9f8725b8ea084",
+        "android_client_info": {
+          "package_name": "com.example.doctor_appointment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168528238029-itn1tll48bs960i7982f5p3b19elim5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdwbo-I3nbEQKTruxnTDSXHlV5h1ZEkVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168528238029-itn1tll48bs960i7982f5p3b19elim5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168528238029:android:48503a5c823c04f28ea084",
+        "android_client_info": {
+          "package_name": "com.fraved.restaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168528238029-itn1tll48bs960i7982f5p3b19elim5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdwbo-I3nbEQKTruxnTDSXHlV5h1ZEkVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168528238029-itn1tll48bs960i7982f5p3b19elim5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168528238029:android:13a831fb365edb078ea084",
+        "android_client_info": {
+          "package_name": "com.rose.emadfoodapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168528238029-itn1tll48bs960i7982f5p3b19elim5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdwbo-I3nbEQKTruxnTDSXHlV5h1ZEkVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168528238029-itn1tll48bs960i7982f5p3b19elim5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
