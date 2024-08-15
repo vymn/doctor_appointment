@@ -15,51 +15,5 @@ class ClinicRepositoryImpl implements ClinicRepository {
               id: doc.id,
             ))
         .toList();
-    // return [];
-
-    // return [
-    //   const Clinic(
-    //     name: 'الاطفال',
-    //     imageUrl:
-    //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ap2wNEi_R6j-cQG0cpZ1DmM146m8evJC0XxXa9cQkB5WFPJGPNwYYZl2xFRJeeoWtJY&usqp=CAU',
-    //     doctors: [],
-    //     id: 0,
-    //   ),
-    //   const Clinic(
-    //     name: 'محجر العيون',
-    //     imageUrl:
-    //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ap2wNEi_R6j-cQG0cpZ1DmM146m8evJC0XxXa9cQkB5WFPJGPNwYYZl2xFRJeeoWtJY&usqp=CAU',
-    //     doctors: [],
-    //     id: 1,
-    //   ),
-    //   const Clinic(
-    //     name: 'الحول',
-    //     imageUrl:
-    //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ap2wNEi_R6j-cQG0cpZ1DmM146m8evJC0XxXa9cQkB5WFPJGPNwYYZl2xFRJeeoWtJY&usqp=CAU',
-    //     doctors: [],
-    //     id: 2,
-    //   ),
-    //   const Clinic(
-    //     name: 'الجلاكوما',
-    //     imageUrl:
-    //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ap2wNEi_R6j-cQG0cpZ1DmM146m8evJC0XxXa9cQkB5WFPJGPNwYYZl2xFRJeeoWtJY&usqp=CAU',
-    //     doctors: [],
-    //     id: 3,
-    //   ),
-    //   const Clinic(
-    //     name: 'الشبكيه',
-    //     imageUrl:
-    //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ap2wNEi_R6j-cQG0cpZ1DmM146m8evJC0XxXa9cQkB5WFPJGPNwYYZl2xFRJeeoWtJY&usqp=CAU',
-    //     doctors: [],
-    //     id: 4,
-    //   ),
-    //   const Clinic(
-    //     name: 'القرنيه',
-    //     imageUrl:
-    //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ap2wNEi_R6j-cQG0cpZ1DmM146m8evJC0XxXa9cQkB5WFPJGPNwYYZl2xFRJeeoWtJY&usqp=CAU',
-    //     doctors: [],
-    //     id: 5,
-    //   ),
-    // ];
   }
 }

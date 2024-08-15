@@ -1,17 +1,13 @@
+import 'package:doctor_app/core/constants/colors.dart';
 import 'package:doctor_app/firebase_options.dart';
-import 'package:doctor_app/home/presentation/pages/home_screen.dart';
 import 'package:doctor_app/home/presentation/pages/start_home_page.dart';
-import 'package:doctor_app/theme/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:doctor_app/core/DI/di_container.dart' as di;
 import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await di.init();
-  // await createMockData();
   runApp(const MyApp());
 }
 
@@ -28,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: primary,
+        primaryColor: EgoColors.primaryColor,
         fontFamily: GoogleFonts.tajawal().fontFamily,
       ),
       home: StartHomePage(),

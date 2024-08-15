@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../home/presentation/pages/HomeTab.dart';
+import '../../../home/presentation/pages/home.dart';
 import '../../../core/styles/colors.dart';
+import '../../../home/presentation/widgets/schedule_card.dart';
 
 class TopDoctorCard extends StatelessWidget {
-  String? img;
-  String doctorName;
-  String doctorTitle;
+  final String? img;
+  final String doctorName;
+  final String doctorTitle;
   final void Function() onTap;
 
-  TopDoctorCard({
+  const TopDoctorCard({
     super.key,
     required this.img,
     required this.doctorName,
@@ -36,10 +37,6 @@ class TopDoctorCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    // CircleAvatar(
-                    //     backgroundImage: img != null
-                    //         ? NetworkImage(img!)
-                    //         : const AssetImage('assets/images/doctor.png')),
                     const SizedBox(
                       width: 10,
                     ),
@@ -70,87 +67,5 @@ class TopDoctorCard extends StatelessWidget {
         ),
       ),
     );
-    // return Card(
-    //   color: Colors.white,
-    //   elevation: 0.1,
-    //   margin: const EdgeInsets.only(bottom: 20),
-    //   child: InkWell(
-    //     onTap: onTap,
-    //     child: Row(
-    //       children: [
-    //         CircleAvatar(
-    //           radius: 30,
-    //           backgroundImage: img != null
-    //               ? NetworkImage(img!)
-    //               : AssetImage('assets/images/doctor.png'),
-    //         ),
-    //         // Container(
-    //         //     height: 100,
-    //         //     decoration: BoxDecoration(
-    //         //         color: Color(MyColors.grey01),
-    //         //         borderRadius: BorderRadius.circular(12)),
-    //         //     child: img != null
-    //         //         ? Image(
-    //         //             width: 100,
-    //         //             image: NetworkImage(img!),
-    //         //           )
-    //         //         : null),
-    //         const SizedBox(
-    //           width: 10,
-    //         ),
-    //         Column(
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: [
-    //             Text(
-    //               doctorName,
-    //               style: TextStyle(
-    //                   color: Color(MyColors.header01),
-    //                   fontWeight: FontWeight.bold,
-    //                   fontSize: 18),
-    //             ),
-    //             const SizedBox(
-    //               height: 5,
-    //             ),
-    //             Text(
-    //               doctorTitle,
-    //               style: TextStyle(
-    //                 color: Color(MyColors.grey02),
-    //                 fontSize: 12,
-    //                 fontWeight: FontWeight.w600,
-    //               ),
-    //             ),
-    //             const SizedBox(
-    //               height: 30,
-    //             ),
-    //             Divider(
-    //               height: 5,
-    //               thickness: 2,
-    //               color: Color(MyColors.grey02),
-    //             ),
-    //             TextButton(onPressed: () {}, child: Text('Make an appointment'))
-    //             // Row(
-    //             //   crossAxisAlignment: CrossAxisAlignment.center,
-    //             //   children: [
-    //             //     Icon(
-    //             //       Icons.star,
-    //             //       color: Color(MyColors.yellow02),
-    //             //       size: 18,
-    //             //     ),
-    //             //     const SizedBox(
-    //             //       width: 5,
-    //             //     ),
-    //             //     // Text(
-    //             //     //   '4.0 - 50 Reviews',
-    //             //     //   style: TextStyle(color: Color(MyColors.grey02)),
-    //             //     // )
-    //             //   ],
-    //             // )
-    //           ],
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

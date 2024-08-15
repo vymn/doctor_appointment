@@ -33,14 +33,14 @@ class EgoTextForm extends StatelessWidget {
           fillColor: const Color(0xffF1F4FF),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Color(0xff1F41BB),
               // color: EgoColors.primaryColor,
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               // color: Color(0xff1F41BB),
               color: EgoColors.primaryColor,
             ),

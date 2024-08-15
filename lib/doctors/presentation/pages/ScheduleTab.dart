@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../core/styles/colors.dart';
-import '../core/styles/styles.dart';
+import '../../../core/styles/colors.dart';
+import '../../../core/styles/styles.dart';
 
 class ScheduleTab extends StatefulWidget {
   final String? doctorId;
@@ -198,10 +198,10 @@ class _ScheduleTabState extends State<ScheduleTab> {
                       if (!snapshot.hasData) {
                         return const Center(child: CircularProgressIndicator());
                       }
+                      // Get the appointments and sort them by 'appointmentDay'
                       final appointments = snapshot.data!.docs;
-                      if (kDebugMode) {
-                        print(appointments);
-                      }
+                      appointments.sort((a, b) => (a['appointmentDay'] as int)
+                          .compareTo(b['appointmentDay'] as int));
                       return ListView.builder(
                         itemCount: appointments.length,
                         itemBuilder: (context, index) {
@@ -763,4 +763,11 @@ class DateTimeCard extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<List<QueryDocumentSnapshot>> _sortAppointments(
+    List<QueryDocumentSnapshot> appointments) async {
+  appointments.sort((a, b) =>
+      (a['appointmentDay'] as int).compareTo(b['appointmentDay'] as int));
+  return appointments;
 }

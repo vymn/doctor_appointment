@@ -9,8 +9,4 @@ class GetClinicsUsecase {
   Future<List<Clinic>> call() async {
     return await _clinicRepository.getClinics();
   }
-
-  // Future<List<Doctor>> getClinicDoctorsUsecaseUse(int clinicId) async {
-  //   // return await GetClinicDoctorsUsecase(clinicId);
-  // }
 }

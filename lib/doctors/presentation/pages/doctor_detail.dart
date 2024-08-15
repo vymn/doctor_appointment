@@ -5,9 +5,7 @@ import 'package:doctor_app/doctors/presentation/bloc/doctors_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
-// import "package:latlong2/latlong.dart" as latLng;
 
 import '../../../core/styles/colors.dart';
 import '../../../core/styles/styles.dart';
@@ -284,7 +282,7 @@ class WeekDays extends StatefulWidget {
     super.key,
     required this.onSelectedDaysChanged,
     required this.doctorWorkingDays,
-    this.isRegestration = true,
+    this.isRegestration = false,
   });
   final ValueChanged<List<int>> onSelectedDaysChanged;
   final List<int> doctorWorkingDays;
@@ -295,7 +293,7 @@ class WeekDays extends StatefulWidget {
 }
 
 class _WeekDaysState extends State<WeekDays> {
-  final List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  final List<String> days = ['أح', 'إ', 'ث', 'أر', 'خ', 'ج', 'س'];
   // final List<bool> selected = List.generate(7, (index) => false);
   late final List<bool> selected;
 
@@ -304,12 +302,15 @@ class _WeekDaysState extends State<WeekDays> {
     super.initState();
     selected =
         List.generate(7, (index) => widget.doctorWorkingDays.contains(index));
+    print(selected);
   }
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      // textDirection: TextDirection.ltr,
       children: days.asMap().entries.map((entry) {
+        print(entry.value);
         int idx = entry.key;
         String day = entry.value;
         return Expanded(
@@ -486,49 +487,6 @@ class DetailDoctorCard extends StatelessWidget {
         ),
       ),
     );
-    // return Container(
-    //   child: Card(
-    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-    //     child: Container(
-    //       padding: const EdgeInsets.all(15),
-    //       width: double.infinity,
-    //       child: Row(
-    //         mainAxisAlignment: MainAxisAlignment.start,
-    //         children: [
-    //           Expanded(
-    //             child: Column(
-    //               crossAxisAlignment: CrossAxisAlignment.start,
-    //               children: [
-    //                 Text(
-    //                   doctor.name,
-    //                   style: TextStyle(
-    //                       color: Color(MyColors.header01),
-    //                       fontWeight: FontWeight.w700),
-    //                 ),
-    //                 const SizedBox(
-    //                   height: 10,
-    //                 ),
-    //                 Text(
-    //                   doctor.specialty,
-    //                   style: TextStyle(
-    //                     color: Color(MyColors.grey02),
-    //                     fontWeight: FontWeight.w500,
-    //                   ),
-    //                 ),
-    //               ],
-    //             ),
-    //           ),
-    //           doctor.image != null
-    //               ? Image(
-    //                   image: NetworkImage(doctor.image!),
-    //                   width: 100,
-    //                 )
-    //               : const SizedBox()
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }
 
@@ -656,38 +614,43 @@ void _showAppointmentDialog(BuildContext context, String doctorId,
                     var uuid = const Uuid();
                     String appointmentId = uuid.v4();
                     if (_keyForm.currentState!.validate()) {
-                      // Save appointment to Firestore
-                      // await FirebaseFirestore.instance
-                      //     .collection('clinics')
-                      //     .doc(clinicId)
-                      //     .collection('doctors')
-                      //     .doc(doctorId)
-                      //     .collection('appointments')
-                      //     .doc(appointmentId)
-                      //     .set({
-                      //   'patientName': _nameController.text,
-                      //   'patientPhone': _phoneController.text,
-                      //   'patientAge': _ageController.text,
-                      //   'appointmentDay': "Selected Day",
-                      //   'appointmentId': appointmentId,
-                      // });
-                      await FirebaseFirestore.instance
+                      // Reference to the appointments collection for a specific doctor
+                      CollectionReference appointmentsRef = FirebaseFirestore
+                          .instance
                           .collection('doctors')
                           .doc(doctorId)
-                          .collection('appointments')
-                          .doc(appointmentId)
-                          .set({
-                        'patientName': nameController.text,
-                        'patientPhone': phoneController.text,
-                        'patientAge': ageController.text,
-                        'appointmentDay': appointmentDay,
-                        'appointmentId': appointmentId,
-                        'isCompleted': 0
-                      });
+                          .collection('appointments');
 
-                      // Show confirmation dialog with QR code
-                      Navigator.of(context).pop();
-                      _showConfirmationDialog(context, appointmentId);
+                      // Query to count the number of appointments on the same day
+                      QuerySnapshot querySnapshot = await appointmentsRef
+                          .where('appointmentDay', isEqualTo: appointmentDay)
+                          .get();
+
+                      if (querySnapshot.docs.length >= 20) {
+                        // Prevent the creation of a new appointment if the limit is reached
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
+                                'لا يمكنك حجز موعد هذا اليوم الرجاء اختيار موعد اخر')));
+                      } else {
+                        await FirebaseFirestore.instance
+                            .collection('doctors')
+                            .doc(doctorId)
+                            .collection('appointments')
+                            .doc(appointmentId)
+                            .set({
+                          'patientName': nameController.text,
+                          'patientPhone': phoneController.text,
+                          'patientAge': ageController.text,
+                          'appointmentDay': appointmentDay,
+                          'appointmentId': appointmentId,
+                          'isCompleted': 0
+                        });
+
+                        // Show confirmation dialog with QR code
+                        Navigator.of(context).pop();
+                        _showConfirmationDialog(context, appointmentId,
+                            querySnapshot.docs.length + 1);
+                      }
                     }
                   },
                 ),
@@ -696,116 +659,22 @@ void _showAppointmentDialog(BuildContext context, String doctorId,
           ),
         ),
       );
-      // return AlertDialog(
-      //
-      //   title: Text('Make Appointment'),
-      //   content: SingleChildScrollView(
-      //     child: ListBody(
-      //       children: <Widget>[
-      //         TextField(
-      //           controller: _nameController,
-      //           decoration: InputDecoration(labelText: 'Name'),
-      //         ),
-      //         TextField(
-      //           controller: _phoneController,
-      //           decoration: InputDecoration(labelText: 'Phone Number'),
-      //         ),
-      //         TextField(
-      //           controller: _ageController,
-      //           decoration: InputDecoration(labelText: 'Age'),
-      //         ),
-      //         SizedBox(height: 20),
-      //         Text('Select Appointment Day:'),
-      //         DropdownButtonFormField<String>(
-      //           items: [
-      //             DropdownMenuItem(child: Text("Monday"), value: "Monday"),
-      //             DropdownMenuItem(child: Text("Tuesday"), value: "Tuesday"),
-      //             DropdownMenuItem(
-      //                 child: Text("Wednesday"), value: "Wednesday"),
-      //             DropdownMenuItem(child: Text("Thursday"), value: "Thursday"),
-      //             DropdownMenuItem(child: Text("Friday"), value: "Friday"),
-      //             DropdownMenuItem(child: Text("Saturday"), value: "Saturday"),
-      //             DropdownMenuItem(child: Text("Sunday"), value: "Sunday"),
-      //           ],
-      //           onChanged: (String? value) {
-      //             _appointmentDay = value;
-      //           },
-      //           decoration: InputDecoration(labelText: "Select Day"),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      //   actions: <Widget>[
-      //     TextButton(
-      //       child: Text('Cancel'),
-      //       onPressed: () {
-      //         Navigator.of(context).pop();
-      //       },
-      //     ),
-      //     TextButton(
-      //       child: Text('Confirm'),
-      //       onPressed: () async {
-      //         var uuid = Uuid();
-      //         String appointmentId = uuid.v4();
-      //
-      //         // Save appointment to Firestore
-      //         // await FirebaseFirestore.instance
-      //         //     .collection('clinics')
-      //         //     .doc(clinicId)
-      //         //     .collection('doctors')
-      //         //     .doc(doctorId)
-      //         //     .collection('appointments')
-      //         //     .doc(appointmentId)
-      //         //     .set({
-      //         //   'patientName': _nameController.text,
-      //         //   'patientPhone': _phoneController.text,
-      //         //   'patientAge': _ageController.text,
-      //         //   'appointmentDay': "Selected Day",
-      //         //   'appointmentId': appointmentId,
-      //         // });
-      //         await FirebaseFirestore.instance
-      //             .collection('doctors')
-      //             .doc(doctorId)
-      //             .collection('appointments')
-      //             .doc(appointmentId)
-      //             .set({
-      //           'patientName': _nameController.text,
-      //           'patientPhone': _phoneController.text,
-      //           'patientAge': _ageController.text,
-      //           'appointmentDay': _appointmentDay,
-      //           'appointmentId': appointmentId,
-      //           'appointmentStatus': 0
-      //         });
-      //
-      //         // Show confirmation dialog with QR code
-      //         Navigator.of(context).pop();
-      //         // _showConfirmationDialog(context, appointmentId);
-      //       },
-      //     ),
-      //   ],
-      // );
     },
   );
 }
 
-void _showConfirmationDialog(BuildContext context, String appointmentId) {
+void _showConfirmationDialog(
+    BuildContext context, String appointmentId, int appointmentNumber) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('تم تأكيد الحجز'),
+        title: Center(
+          child: Text('تم تأكيد الحجز'),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            // Screenshot(
-            //   controller: screenshotController,
-            //   child: QrImage(
-            //     data: appointmentId,
-            //     version: QrVersions.auto,
-            //     size: 200.0,
-            //   ),
-            // ),
-          ],
+          children: <Widget>[Text(' رقم الحجز: ${appointmentNumber}')],
         ),
         actions: <Widget>[
           // TextButton(
