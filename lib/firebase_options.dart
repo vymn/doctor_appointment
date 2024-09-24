@@ -41,46 +41,47 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDm3CrFH4Y7X6BUxMffBD9p_GjdzVrGntg',
-    appId: '1:168528238029:web:ae837dd42bea9caa8ea084',
-    messagingSenderId: '168528238029',
-    projectId: 'test-4833d',
-    authDomain: 'test-4833d.firebaseapp.com',
-    storageBucket: 'test-4833d.appspot.com',
+    apiKey: 'AIzaSyDSeJy9QzV4HNi3p0eMLDz6GDEdvoK5A3Q',
+    appId: '1:1017855760474:web:5f231fe716e9d047416063',
+    messagingSenderId: '1017855760474',
+    projectId: 'doctor-9518b',
+    authDomain: 'doctor-9518b.firebaseapp.com',
+    storageBucket: 'doctor-9518b.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAdwbo-I3nbEQKTruxnTDSXHlV5h1ZEkVo',
-    appId: '1:168528238029:android:d5dd4167a9f8725b8ea084',
-    messagingSenderId: '168528238029',
-    projectId: 'test-4833d',
-    storageBucket: 'test-4833d.appspot.com',
+    apiKey: 'AIzaSyC7OK0IJwhNnXUCt73g-Z9eUWGH9g6jRKs',
+    appId: '1:1017855760474:android:bb6c01ac9ace8c7c416063',
+    messagingSenderId: '1017855760474',
+    projectId: 'doctor-9518b',
+    storageBucket: 'doctor-9518b.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDqDA70D1pbjZGYeASgnMlc86dUGglh3iU',
-    appId: '1:168528238029:ios:de76c402d9789ca28ea084',
-    messagingSenderId: '168528238029',
-    projectId: 'test-4833d',
-    storageBucket: 'test-4833d.appspot.com',
+    apiKey: 'AIzaSyD2FRBho4gczhGaRY1UmeX00MHrtHqGeq0',
+    appId: '1:1017855760474:ios:21cdae327a336e87416063',
+    messagingSenderId: '1017855760474',
+    projectId: 'doctor-9518b',
+    storageBucket: 'doctor-9518b.appspot.com',
     iosBundleId: 'com.example.doctorAppointment',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDqDA70D1pbjZGYeASgnMlc86dUGglh3iU',
-    appId: '1:168528238029:ios:de76c402d9789ca28ea084',
-    messagingSenderId: '168528238029',
-    projectId: 'test-4833d',
-    storageBucket: 'test-4833d.appspot.com',
+    apiKey: 'AIzaSyD2FRBho4gczhGaRY1UmeX00MHrtHqGeq0',
+    appId: '1:1017855760474:ios:21cdae327a336e87416063',
+    messagingSenderId: '1017855760474',
+    projectId: 'doctor-9518b',
+    storageBucket: 'doctor-9518b.appspot.com',
     iosBundleId: 'com.example.doctorAppointment',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDm3CrFH4Y7X6BUxMffBD9p_GjdzVrGntg',
-    appId: '1:168528238029:web:55dcbb66822363ee8ea084',
-    messagingSenderId: '168528238029',
-    projectId: 'test-4833d',
-    authDomain: 'test-4833d.firebaseapp.com',
-    storageBucket: 'test-4833d.appspot.com',
+    apiKey: 'AIzaSyDSeJy9QzV4HNi3p0eMLDz6GDEdvoK5A3Q',
+    appId: '1:1017855760474:web:ef3a5ba2035f9bbc416063',
+    messagingSenderId: '1017855760474',
+    projectId: 'doctor-9518b',
+    authDomain: 'doctor-9518b.firebaseapp.com',
+    storageBucket: 'doctor-9518b.appspot.com',
   );
+
 }
